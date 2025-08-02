@@ -1,0 +1,3594 @@
+{
+  "name": "LinkedIn Lead Generation",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const urls = $input.all().map(item => item.json.output.url);\n\nconst output = {\n  count: 100,\n  countryCode: 10,\n  scrapeCompany: true,\n  urls: urls\n};\n\nreturn [\n  {\n    json: output\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1024,
+        -368
+      ],
+      "id": "54249e29-36d0-4523-ba0b-efcdcc0fce8b",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/hKByXkMQaC5Qt9UMN/run-sync-get-dataset-items",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer Your Apify Token"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -864,
+        -368
+      ],
+      "id": "89567e29-4c59-48b6-9038-8b5854a3efd9",
+      "name": "Jobs"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc",
+          "mode": "list",
+          "cachedResultName": "LinkedIn Lead Generation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1227895505,
+          "mode": "list",
+          "cachedResultName": "Sheet2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc/edit#gid=1227895505"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Job Title": "={{ $json.title }}",
+            "Company name": "={{ $json.companyName }}",
+            "Company linkedin": "={{ $json.companyLinkedinUrl.split('?')[0] }}",
+            "Description": "={{ $json.descriptionText }}",
+            "Job Posted": "={{ $json.postedAt }}",
+            "Location": "={{ $json.location }}",
+            "company website": "={{ $json.companyWebsite }}",
+            "Company id": "={{ $json.id }}",
+            " Jobs Titles": "={{ $json.title }}"
+          },
+          "matchingColumns": [
+            "Company id"
+          ],
+          "schema": [
+            {
+              "id": "Company id",
+              "displayName": "Company id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company name",
+              "displayName": "Company name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Job Title",
+              "displayName": "Job Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": " Jobs Titles",
+              "displayName": " Jobs Titles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "No. of Jobs",
+              "displayName": "No. of Jobs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Job Posted",
+              "displayName": "Job Posted",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company linkedin",
+              "displayName": "Company linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "company website",
+              "displayName": "company website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company UUID",
+              "displayName": "Company UUID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Apollo Url",
+              "displayName": "Apollo Url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Decision Maker",
+              "displayName": "Decision Maker",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -176,
+        -368
+      ],
+      "id": "41dc15b9-c3b6-43a8-8c8c-30e8672e6cf9",
+      "name": "Scrap Data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "avZtFTxBgelyc70W",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc",
+          "mode": "list",
+          "cachedResultName": "LinkedIn Lead Generation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1227895505,
+          "mode": "list",
+          "cachedResultName": "Sheet2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc/edit#gid=1227895505"
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -1504,
+        208
+      ],
+      "id": "d42ae2ca-253a-455b-bd21-b63fcae6e591",
+      "name": "Lead Enchirement",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "avZtFTxBgelyc70W",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a83d6976-856f-440b-991b-a08d371a9da2",
+              "name": "slug",
+              "value": "={{ $json[\"Company name\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "13a2116a-f7d4-4dd1-ad18-fbebdb869712",
+              "name": "company linkedin",
+              "value": "={{ $json['Company linkedin'] }}",
+              "type": "string"
+            },
+            {
+              "id": "56e8edce-5a5d-43bb-add5-307556677c75",
+              "name": "id",
+              "value": "={{ $json['Company id'] }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -688,
+        352
+      ],
+      "id": "65a9bfa5-d3d4-443f-95d9-39c6d2860504",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/ipHw77V2NMJPy8sbS/run-sync-get-dataset-items",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer Your Apify Token"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -304,
+        352
+      ],
+      "id": "fdd7fd19-a6fa-4aa6-8b2c-545b39e848b8",
+      "name": "Jobs1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Collect all slugs\nconst slugs = $input.all().map(item => item.json.slug);\n\n// Remove duplicates\nconst uniqueSlugs = [...new Set(slugs)];\n\n// Return in required format\nreturn [\n  {\n    json: {\n      identifier: uniqueSlugs\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -528,
+        352
+      ],
+      "id": "01da0b31-fd3e-4018-aa35-69ebe0d39e6f",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "dd997bdf-8e05-44c8-9a02-23cd8dc4da68",
+              "leftValue": "={{ $json.basic_info.is_verified }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -80,
+        352
+      ],
+      "id": "e0b3c0f1-3458-41d3-b247-4e9f16af6269",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "advanced": true,
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "Company linkedin",
+              "field2": "name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1456,
+        544
+      ],
+      "id": "c1914240-7686-4480-9b11-108994c741f2",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "327aff4e-5b6d-4154-a2c9-8f651fef69c0",
+              "name": "Job Description",
+              "value": "={{ $json.Description }}",
+              "type": "string"
+            },
+            {
+              "id": "0b5be63b-1b6c-4008-b327-defb51dd7f99",
+              "name": "Id",
+              "value": "={{ $json['Company id'] }}",
+              "type": "number"
+            },
+            {
+              "id": "885d9775-1ace-47bf-94b7-f72085875dd9",
+              "name": "Company linkedin",
+              "value": "={{ $json['Company linkedin'].split('?')[0] }}/",
+              "type": "string"
+            },
+            {
+              "id": "92e3b5a4-4d33-4fe9-8862-15f78c3dff36",
+              "name": " Jobs Titles",
+              "value": "={{ $json[' Jobs Titles'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        144,
+        208
+      ],
+      "id": "40b241f2-2eb2-464e-8f93-724c918302fe",
+      "name": "field 1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "55c0e772-6414-4988-967c-e083c473a8a2",
+              "name": "name",
+              "value": "={{ $json.basic_info.linkedin_url }}",
+              "type": "string"
+            },
+            {
+              "id": "3e1391dd-bf7a-42be-b2eb-255d8635e36c",
+              "name": "description",
+              "value": "={{ $json.basic_info.description }}",
+              "type": "string"
+            },
+            {
+              "id": "6ae745f6-b1ba-44c9-9659-96e1c909a60d",
+              "name": "range",
+              "value": "={{ $json.stats.employee_count_range.start }} - {{ $json.stats.employee_count_range.end }}",
+              "type": "string"
+            },
+            {
+              "id": "a5c88a5b-253c-4d84-86bc-9bf09f6be5fc",
+              "name": "people cont",
+              "value": "={{ $json.stats.employee_count }}",
+              "type": "string"
+            },
+            {
+              "id": "eca00e8f-aceb-4ad9-bbb0-9a5d8837ed5d",
+              "name": "basic_info.specialties",
+              "value": "={{ $json.basic_info.specialties }}",
+              "type": "array"
+            },
+            {
+              "id": "a8db0344-6435-4049-bd27-c81296bf1775",
+              "name": "locations.headquarters.country",
+              "value": "={{ $json.locations.headquarters.country }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        144,
+        336
+      ],
+      "id": "225c6473-1594-4373-abdc-674252677bb4",
+      "name": "field 2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f651433a-90e9-4796-a31b-d01095a8cbb8",
+              "name": "Id",
+              "value": "={{ $json.Id }}",
+              "type": "number"
+            },
+            {
+              "id": "4604358f-e56f-47f4-9857-8c4c1c7921c3",
+              "name": "company description",
+              "value": "={{ $json.description }}",
+              "type": "string"
+            },
+            {
+              "id": "a276e6ed-232d-4f8e-9d71-82a897bfcfd5",
+              "name": "Job Description",
+              "value": "={{ $json['Job Description'] }}",
+              "type": "string"
+            },
+            {
+              "id": "ec4dfdbd-db17-4e05-8874-b65f78350dbc",
+              "name": "Company linkedin",
+              "value": "={{ $json['Company linkedin'] }}",
+              "type": "string"
+            },
+            {
+              "id": "cec90b8d-5d1e-41e3-9f96-381d6b739df5",
+              "name": "range",
+              "value": "={{ $json.range }}",
+              "type": "string"
+            },
+            {
+              "id": "d3f09368-3470-4722-a8d0-367a09bf5907",
+              "name": "people cont",
+              "value": "={{ $json['people cont'] }}",
+              "type": "string"
+            },
+            {
+              "id": "efb6cd67-d81b-413e-bfa9-bf26681feb1b",
+              "name": "specialties",
+              "value": "={{ $json.basic_info.specialties }}",
+              "type": "array"
+            },
+            {
+              "id": "a6a18980-a706-45e1-a01e-4057eae2d94a",
+              "name": "country",
+              "value": "={{ $json.locations.headquarters.country }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1280,
+        544
+      ],
+      "id": "d0a90bf9-d737-4396-ba83-b15b41d9757a",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -2032,
+        608
+      ],
+      "id": "0f192cee-99ee-46e1-86d1-b434e85aad30",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "dWFHl9PoVQ1kEXGv",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json['company description'] }}\n{{ $json['Job Description'] }}\n{{ $json.range }}\n{{ $json.specialties }}\n{{ $json.country }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "yes",
+              "description": "=You are a job analyst helping a candidate decide if they should apply for a job at a company.  Here is the data:  🔹 Company Description: {{ $json['company description'] }}  🔹 Job Description: {{ $json['Job Description'] }}  🔹 Salary Range: {{ $json.range }}  🔹 Company Specialties: {{ $json.specialties }}  🔹 Country: {{ $json.country }}  Assume the company has fewer than 300 employees and is based in the USA.  🧠 Your job: Determine if the job aligns with the company’s actual business focus or specialties. Sometimes companies post jobs that don’t match their main field (e.g. a real estate company hiring a software engineer for a side project).  🔎 Evaluate: - Does the job clearly fit within the company’s core business or specialty? - Would this role likely contribute to their main product/service? - Or is it a disconnected role (e.g. side project, outsourcing, support)?"
+            },
+            {
+              "category": "No",
+              "description": "Not match job with description and not form usa and "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1.1,
+      "position": [
+        -1056,
+        544
+      ],
+      "id": "64e9243d-234b-4570-8a27-a2c6815fbcdf",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a smart outbound copywriter bot. Your job is to review the following job and company context and pick one of five proven message variations. DO NOT return all five. Pick the one that best fits the job tone and company vibe.\n\nInput:\n- Company Description: {{ $json[\"company description\"] }}\n- Job Description: {{ $json[\"Job Description\"] }}\n- Company Specialties: {{ $json.specialties }}\n\nYour goal:\nCheck if the job is for an SDR, sales, or outbound role. Then:\n1. If the job fits, return **only ONE** message from the following 5 variations, whichever best fits the company tone and job nature.\n2. Replace `{First Name}` with a placeholder (e.g., [First Name]).\n3. Keep it concise — do not add explanation, intro, or tags.\n\nMessage Variations:\n\n✅ Variation 1 — Straightforward & Friendly  \nHey [First Name]!  \nSaw you’re bringing on an SDR — smart move in this market.  \nQuick thought: what if you could automate that same outbound work and book 20+ qualified calls a month — without adding more salaries?  \nWe did this for iCanvas and a few other teams — works 24/7 and only hands your closers warm leads.  \nWorth exploring if you’re open to a peek?\n\n✅ Variation 2 — Problem → Solution  \nHi [First Name],  \nHiring SDRs is tough — training, ramp time, turnover, all that fun stuff.  \nCurious — have you looked at using AI to replace or augment that role?  \nWe build cold outreach systems that quietly book 20–30 sales calls each month — so your reps spend zero time hunting.  \nWe did it for iCanvas — could share the blueprint if you’d find that useful?\n\n✅ Variation 3 — Short & Conversational  \nHey [First Name]!  \nCongrats on growing the team — saw you’re adding an SDR.  \nIf you ever want to see how we helped iCanvas skip extra SDR hires and still fill their calendar every week, just say yes.  \nIt’s basically a plug-and-play cold email machine — no burnout, no breaks.  \nShould I send over a quick overview?\n\n✅ Variation 4 — Value Drop First  \nHi [First Name],  \nNoticed you’re hiring an SDR — thought this might help:  \nWe set up AI-powered outbound for growing teams — on average, they add 20+ qualified calls/month without extra headcount or ad spend.  \nExample: iCanvas scaled pipeline and reduced cost per lead by automating outreach + follow-ups.  \nIf you’re curious, I can share a 2-min breakdown. Want it?\n\n✅ Variation 5 — Humor + Hook  \nHey [First Name]!  \nHiring SDRs is great — until they need vacations, sick days, or vanish after training 😅  \nWe help teams skip that headache with an AI system that does the same job — finds, qualifies, and books calls 24/7.  \nFor example, iCanvas uses it to fill their pipeline without adding new SDRs every quarter.  \nWorth a peek if you want your closers closing — not chasing. Should I send details?\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -656,
+        544
+      ],
+      "id": "22b1440b-3571-421e-84c6-52cbca9e18a7",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2144,
+        -352
+      ],
+      "id": "c2aaf509-0b2b-45f9-acf1-fbc4118f28db",
+      "name": "Telegram Trigger",
+      "webhookId": "80979b2c-4cfb-4abd-91b5-f09d96863c0d",
+      "credentials": {
+        "telegramApi": {
+          "id": "Rf1RtOQgG7OaJv1K",
+          "name": "Telegram account Noman"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Successfully Complete",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -208,
+        -64
+      ],
+      "id": "c4fa6239-62a5-4d39-bfd0-bd8da6d900a5",
+      "name": "Send a text message",
+      "webhookId": "5cfac4b7-ccc8-4b7b-9684-01f59eb64359",
+      "credentials": {
+        "telegramApi": {
+          "id": "55H1dJZgpPnMpdF4",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst urlMap = {};\n\n// Count each unique URL\nfor (const item of items) {\n  const url = item.json.url;\n  if (!url) continue;\n\n  if (urlMap[url]) {\n    urlMap[url]++;\n  } else {\n    urlMap[url] = 1;\n  }\n}\n\n// Convert counts to output format\nconst result = Object.entries(urlMap).map(([url, count]) => {\n  return { json: { url, count } };\n});\n\nreturn result;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -384,
+        -240
+      ],
+      "id": "be1828d5-020d-4f4f-b1f8-c81f6338583a",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Extract only the exact URL from the following user message. \nReturn nothing else — no text, no explanation, just the raw URL.\n\nInput: {{ $('Telegram Trigger').item.json.message.text }}\n\nRequire output in this formate\n{\n\"url\":\"\"\n}\n",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -1568,
+        -368
+      ],
+      "id": "2c6f2a5e-951d-4098-b7a3-a841e1567e37",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -1920,
+        448
+      ],
+      "id": "ffdd87c8-5777-458a-9849-d77e34c5efc9",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "dWFHl9PoVQ1kEXGv",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"url\":\"\"\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -1936,
+        608
+      ],
+      "id": "54045bb2-c214-43d5-adb1-d8a8220b76b6",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "46f4f8fb-bf7c-4d8a-a322-b8df72502a6e",
+              "name": "url",
+              "value": "={{ $json.companyLinkedinUrl.split('?')[0] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -624,
+        -240
+      ],
+      "id": "2b068db5-8c8d-4419-a060-8c2dc9067ce7",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc",
+          "mode": "list",
+          "cachedResultName": "LinkedIn Lead Generation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1227895505,
+          "mode": "list",
+          "cachedResultName": "Sheet2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc/edit#gid=1227895505"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Company linkedin": "={{ $json.url }}",
+            "No. of Jobs": "={{ $json.count }}"
+          },
+          "matchingColumns": [
+            "Company linkedin"
+          ],
+          "schema": [
+            {
+              "id": "Company id",
+              "displayName": "Company id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Company name",
+              "displayName": "Company name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Job Title",
+              "displayName": "Job Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": " Jobs Titles",
+              "displayName": " Jobs Titles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "No. of Jobs",
+              "displayName": "No. of Jobs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Job Posted",
+              "displayName": "Job Posted",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Company linkedin",
+              "displayName": "Company linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "company website",
+              "displayName": "company website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Company UUID",
+              "displayName": "Company UUID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -176,
+        -240
+      ],
+      "id": "ee505171-84e4-4bc3-9a0b-4277c90a3af1",
+      "name": "Scrap Data1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "avZtFTxBgelyc70W",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "advanced": true,
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "Company linkedin",
+              "field2": "Company linkedin"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1008,
+        -64
+      ],
+      "id": "b3d25622-23ee-4658-b708-076d2b773c23",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -2032,
+        448
+      ],
+      "id": "c9106624-2db0-439f-89f4-4e96415ac6a3",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "dWFHl9PoVQ1kEXGv",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "No. of Jobs",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        -64
+      ],
+      "id": "2730e642-dc54-4e0c-a9c2-81509e27816c",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "['Company linkedin']",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -784,
+        -64
+      ],
+      "id": "57c249d1-f1b7-4f84-85ea-389297dff14f",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "maxItems": 5
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -64
+      ],
+      "id": "d49c957d-d8ee-4d8b-a9a0-5f2ce3058586",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc",
+          "mode": "list",
+          "cachedResultName": "LinkedIn Lead Generation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 580874720,
+          "mode": "list",
+          "cachedResultName": "Sheet3",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc/edit#gid=580874720"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Company linkedin": "={{ $('Text Classifier').item.json['Company linkedin'] }}",
+            "Description": "={{ $('Text Classifier').item.json['Job Description'] }}",
+            "Location": "={{ $('Text Classifier').item.json.country }}",
+            "message": "={{ $json.output }}"
+          },
+          "matchingColumns": [
+            "Company linkedin"
+          ],
+          "schema": [
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company linkedin",
+              "displayName": "Company linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message",
+              "displayName": "message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -256,
+        544
+      ],
+      "id": "27221c5d-b316-4664-9442-b820f8e8e24f",
+      "name": "Scrap Data3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "avZtFTxBgelyc70W",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "No. of Jobs",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        -1104,
+        208
+      ],
+      "id": "c69de37f-c9cf-40b0-b97f-6974fb5ee2a8",
+      "name": "Sort1"
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "['Company linkedin']",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -1328,
+        208
+      ],
+      "id": "338704be-63bf-4312-9ddf-922d5e72f2d3",
+      "name": "Remove Duplicates1"
+    },
+    {
+      "parameters": {
+        "maxItems": 30
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        208
+      ],
+      "id": "f0d58cdb-74af-4517-afb3-9e526fe3de09",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "Successfully Complete",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -32,
+        544
+      ],
+      "id": "af83f579-24f2-4dc0-a831-e841b0666b5b",
+      "name": "Send a text message1",
+      "webhookId": "5cfac4b7-ccc8-4b7b-9684-01f59eb64359",
+      "credentials": {
+        "telegramApi": {
+          "id": "55H1dJZgpPnMpdF4",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Linkedin Job Scraping\n",
+        "height": 608,
+        "width": 2496
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2176,
+        -464
+      ],
+      "typeVersion": 1,
+      "id": "e12105cf-e629-41c2-8bbb-f37c8b6adac7",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# Find Verified Job \n# Clean Best fit job",
+        "height": 640,
+        "width": 2496
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2176,
+        160
+      ],
+      "typeVersion": 1,
+      "id": "39a49967-2fb6-4921-9690-772b17628f65",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 416,
+        "width": 576,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2176,
+        384
+      ],
+      "typeVersion": 1,
+      "id": "4e09b519-f4d2-4736-a95d-2f12c4af94f2",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.message.text }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "scrap job",
+              "description": "=This message look like user provide input for scrap job. user provide input and told scrap job from this."
+            },
+            {
+              "category": "job",
+              "description": "=This message look like user get information about job. user ask about job's, provide me information about this job."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1.1,
+      "position": [
+        -1952,
+        -352
+      ],
+      "id": "cf5f42c8-0048-423a-ba82-2512995d1222",
+      "name": "Text Classifier1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc",
+          "mode": "list",
+          "cachedResultName": "LinkedIn Lead Generation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1227895505,
+          "mode": "list",
+          "cachedResultName": "Sheet2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ts7rsA06GsM3dMT7nx8nMz1KVfwoYGVPqMLWId8RMZc/edit#gid=1227895505"
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -1216,
+        -368
+      ],
+      "id": "1a2b7d60-9d1a-4c7e-802f-9107a98a51b6",
+      "name": "Lead Enchirement1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "avZtFTxBgelyc70W",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Jobs1": [
+      {
+        "json": {
+          "input_identifier": "Foley",
+          "basic_info": {
+            "name": "Foley",
+            "universal_name": "foley",
+            "description": "Foley is a leading-edge software for transportation risk, DOT compliance, and employee screening. Our team pairs deep regulatory expertise with innovative and automated technology, providing you with an easy-to-use, comprehensive platform.\n\nWorking alongside the transportation, construction, manufacturing, and other safety-sensitive industries, Foley is a trusted platform to help hire better drivers, faster and lower risk for fleets of all sizes. Whether you are the sole driver or have a nation-wide team behind the wheel, Foley's software can streamline required files and employee screening. We transform insight into actionable data that changes the way insurers, contractors, and auditors view your fleet risk.\n\nSmarter data. Safer fleets. Lower risk.",
+            "website": "https://www.foley.io",
+            "linkedin_url": "https://www.linkedin.com/company/foley/",
+            "specialties": [
+              "Drug & Alcohol Testing",
+              "Employee Background Checks",
+              "Employee Monitoring",
+              "Social Media & Digital Activity Screens",
+              "Transportation Factoring",
+              "Permits & Registrations",
+              "IFTA",
+              "FMCSA",
+              "DOT Regulations",
+              "DOT Compliance",
+              "Motor Vehicle Reports",
+              "Driver Files",
+              "Clearinghouse Compliance"
+            ],
+            "industries": [
+              "Computer Software"
+            ],
+            "is_verified": true,
+            "founded_info": {
+              "year": 1992,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": true,
+              "last_verified_at": 1717199496657
+            }
+          },
+          "stats": {
+            "employee_count": 307,
+            "follower_count": 21986,
+            "employee_count_range": {
+              "start": 201,
+              "end": 500
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "US",
+              "state": "CT",
+              "city": "Hartford",
+              "postal_code": "06106",
+              "line1": "140 Huyshope Avenue",
+              "line2": null,
+              "is_hq": true,
+              "description": "Corporate Headquarters"
+            },
+            "offices": [
+              {
+                "country": "US",
+                "state": "CT",
+                "city": "Hartford",
+                "postal_code": "06106",
+                "line1": "140 Huyshope Avenue",
+                "line2": null,
+                "is_hq": true,
+                "description": "Corporate Headquarters",
+                "region": "Hartford"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 41.77158,
+              "longitude": -72.67429
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/D560BAQHmvoT1XnI0Gw/company-logo_400_400/B56Zfsl.9pGUAY-/0/1752021070563/foley_logo?e=1756944000&v=beta&t=HF2JFNlQmub6yREQlJwHeTpGW3Du2TZyFpq0RPyn70A",
+            "cover_url": "https://media.licdn.com/dms/image/v2/D4E1BAQGRO8PK1S_OmA/company-background_10000/B4EZfsnSbSHgAg-/0/1752021411831/foley_cover?e=1754499600&v=beta&t=f3axz6Lh6O54WBDBXyuxqjg0kOspCMa9BON8p3jYe_4",
+            "cropped_cover_url": "https://media.licdn.com/dms/image/v2/D4E3DAQFFaMMeGzgydA/image-scale_191_1128/B4EZfsnSa0HwAg-/0/1752021411868/foley_cover?e=1754499600&v=beta&t=47C8v16Rz5HmF2Zo6ayYn_evST5SMel7eTkhszLru0c"
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "https://www.foley.io",
+            "linkedin": "https://www.linkedin.com/company/foley/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=1872238",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "1872238"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Bisnow",
+          "basic_info": {
+            "name": "Bisnow",
+            "universal_name": "bisnow",
+            "description": "Our mission is to inform, connect and advance the commercial real estate community to do more business. We aspire to be the most data-driven and humanizing digital media, live events and intelligence platform in the galaxy — and through this effort, drive the industry to greater heights.\n\nBisnow hosts 340+ events a year that are attended by over 75,000 people, 2,000 sponsors and hundreds of speakers. We also publish newsletters and morning briefs that reach more than 1.5 million CRE executives.\n\nUpcoming Events: https://www.bisnow.com/events\nCRE News: https://www.bisnow.com/\nCareer Opportunities: https://www.bisnow.com/careers\nCheck us out on Glassdoor: https://www.glassdoor.com/Overview/Working-at-Bisnow-EI_IE358093.11,17.htm",
+            "website": "https://www.bisnow.com",
+            "linkedin_url": "https://www.linkedin.com/company/bisnow/",
+            "specialties": [
+              "Association/Entrepreneur",
+              "Event Production",
+              "E-Publications",
+              "Technology",
+              "Networking",
+              "Educational",
+              "Events",
+              "Conferences",
+              "Recruitment Services",
+              "Advertising Solutions",
+              "News",
+              "Commercial Real Estate",
+              "Newsletters",
+              "Dealmaking"
+            ],
+            "industries": [
+              "Online Media"
+            ],
+            "is_verified": true,
+            "founded_info": {
+              "year": 2005,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": true,
+              "last_verified_at": 1717199496665
+            }
+          },
+          "stats": {
+            "employee_count": 308,
+            "follower_count": 54459,
+            "employee_count_range": {
+              "start": 51,
+              "end": 200
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "US",
+              "state": null,
+              "city": "New York",
+              "postal_code": null,
+              "line1": "123 William St",
+              "line2": null,
+              "is_hq": true,
+              "description": "Headquarters"
+            },
+            "offices": [
+              {
+                "country": "US",
+                "state": null,
+                "city": "New York",
+                "postal_code": null,
+                "line1": "123 William St",
+                "line2": null,
+                "is_hq": true,
+                "description": "Headquarters",
+                "region": "New York"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 40.860245,
+              "longitude": -93.26005
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/C560BAQEFbmKoS3dPJg/company-logo_400_400/company-logo_400_400/0/1657127520468/bisnow_logo?e=1756944000&v=beta&t=bSU5E9PiMtIr0x6uuXsEOBXdDacJcbMXfOuKVgQxr1I",
+            "cover_url": "https://media.licdn.com/dms/image/v2/D4E1BAQE2s0iYjSWrJw/company-background_10000/B4EZgeIxo1HIAY-/0/1752852274788/bisnow_cover?e=1754499600&v=beta&t=GrflIxEu6Vzg-xBN7gn6Fv_STvL5gR7X9J6rTpsshw8",
+            "cropped_cover_url": "https://media.licdn.com/dms/image/v2/D4E3DAQHHTUkMzjihJA/image-scale_191_1128/B4EZgeIxrHGcAg-/0/1752852274567/bisnow_cover?e=1754499600&v=beta&t=QXwgQTh-pKqvvnPk3_heq_ES60Wd4mel1LLlaIqM-nw"
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "https://www.bisnow.com",
+            "linkedin": "https://www.linkedin.com/company/bisnow/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=354816",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "354816"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Add Some Zest",
+          "basic_info": {
+            "name": "",
+            "universal_name": "",
+            "description": "",
+            "website": "",
+            "linkedin_url": "",
+            "specialties": [],
+            "industries": [],
+            "is_verified": false,
+            "founded_info": {
+              "year": null,
+              "month": null,
+              "day": null
+            },
+            "page_type": "",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": null,
+            "follower_count": null,
+            "employee_count_range": {
+              "start": null,
+              "end": null
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {},
+            "offices": [],
+            "geo_coordinates": {
+              "latitude": null,
+              "longitude": null
+            }
+          },
+          "media": {
+            "logo_url": "",
+            "cover_url": "",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "",
+            "linkedin": "",
+            "job_search": "",
+            "sales_navigator": "",
+            "crunchbase": ""
+          },
+          "company_urn": ""
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "hackajob",
+          "basic_info": {
+            "name": "hackajob",
+            "universal_name": "hackajob",
+            "description": "The AI driven tech hiring platform loved and trusted by leading tech employers and 900,000+ tech professionals worldwide.\n\nSmart, flexible AI instantly identifies highly relevant, high-intent tech talent based on real skills, experience, and preferences. Not just keywords.\n\nNo ghosting. No noise. No irrelevant outreach.\n\nTech professionals across Software Engineering, Data, DevOps, and 200+ other disciplines create a single profile to get matched with jobs they care about. \n\nThe best part? \nJob seekers are in control, privately accepting or declining opportunities from companies that might not have found them otherwise.\n\nThe result?\nFaster connections, higher-quality matches, and 76% of interview requests accepted by candidates within 24 hours.\n\nThat’s what we call enjoyable tech hiring 🤝",
+            "website": "https://www.hackajob.com",
+            "linkedin_url": "https://www.linkedin.com/company/hackajob/",
+            "specialties": [
+              "Tech Recruitment",
+              "Graduate Recruitment",
+              "Disruption",
+              "Recruiting",
+              "Technology"
+            ],
+            "industries": [
+              "Computer Software"
+            ],
+            "is_verified": true,
+            "founded_info": {
+              "year": 2014,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": true,
+              "last_verified_at": 1717199496651
+            }
+          },
+          "stats": {
+            "employee_count": 118,
+            "follower_count": 150974,
+            "employee_count_range": {
+              "start": 51,
+              "end": 200
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "GB",
+              "state": null,
+              "city": "London",
+              "postal_code": "EC1V 3RS",
+              "line1": "hackajob, 2nd Floor",
+              "line2": "63 Gee Street",
+              "is_hq": true,
+              "description": null
+            },
+            "offices": [
+              {
+                "country": "GB",
+                "state": null,
+                "city": "London",
+                "postal_code": "EC1V 3RS",
+                "line1": "hackajob, 2nd Floor",
+                "line2": "63 Gee Street",
+                "is_hq": true,
+                "description": null,
+                "region": "London"
+              },
+              {
+                "country": "RO",
+                "state": "Iasi",
+                "city": "Iasi",
+                "postal_code": "700049",
+                "line1": "Solomons building",
+                "line2": "37 Sfantul Lazar Street",
+                "is_hq": false,
+                "description": null,
+                "region": "Iasi"
+              },
+              {
+                "country": "US",
+                "state": "New York",
+                "city": "New York City",
+                "postal_code": "NY 10010",
+                "line1": "287 Park Avenue South",
+                "line2": "7th Floor",
+                "is_hq": false,
+                "description": null,
+                "region": "New York City"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 51.51649,
+              "longitude": -0.128427
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/D560BAQF6HYG6dvSK0Q/company-logo_400_400/company-logo_400_400/0/1683088716419/hackajob_logo?e=1756944000&v=beta&t=buAwH4NJ3Xk9xZ0ZwBd1e0z68z_22NObSBUoBlwnxEo",
+            "cover_url": "https://media.licdn.com/dms/image/v2/D561BAQFMSIUrhyBxpg/company-background_10000/company-background_10000/0/1683088789306/hackajob_cover?e=1754499600&v=beta&t=HRCpUCv5fKkH3JEf2bpbHvBoNjc2LlRCfJ_GOhdfdnE",
+            "cropped_cover_url": "https://media.licdn.com/dms/image/v2/D563DAQGdHIyMt3qbpA/image-scale_191_1128/image-scale_191_1128/0/1683088794619/hackajob_cover?e=1754499600&v=beta&t=eBa5giyZh8p8BVT2Y4Y3DX8TA18mdOvvrrwvrja5P0E"
+          },
+          "funding": {
+            "total_rounds": 6,
+            "latest_round": {
+              "type": "Series B",
+              "date": {
+                "year": 2023,
+                "month": 5,
+                "day": 3
+              },
+              "url": "https://www.crunchbase.com/funding_round/hackajob-series-b--39ca6c35?utm_source=linkedin&utm_medium=referral&utm_campaign=linkedin_companies&utm_content=last_funding",
+              "investors_count": 2
+            },
+            "crunchbase_url": "https://www.crunchbase.com/organization/hackajob?utm_source=linkedin&utm_medium=referral&utm_campaign=linkedin_companies&utm_content=profile_cta"
+          },
+          "links": {
+            "website": "https://www.hackajob.com",
+            "linkedin": "https://www.linkedin.com/company/hackajob/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=5396873",
+            "sales_navigator": null,
+            "crunchbase": "https://www.crunchbase.com/organization/hackajob?utm_source=linkedin&utm_medium=referral&utm_campaign=linkedin_companies&utm_content=profile_cta"
+          },
+          "company_urn": "5396873"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Worldpay",
+          "basic_info": {
+            "name": "Worldpay",
+            "universal_name": "worldpay",
+            "description": "Worldpay is an industry leading payments technology and solutions company with unique capabilities to power omni-commerce across the globe. Our processing solutions allow businesses of all sizes to take, make and manage payments in-person and online from anywhere in the world. Annually, we process over 40 billion transactions across 146 countries and 135 currencies. We help our customers become more efficient, more secure and more successful.",
+            "website": "http://www.worldpay.com",
+            "linkedin_url": "https://www.linkedin.com/company/worldpay/",
+            "specialties": [
+              "Technology",
+              "Payment Systems",
+              "Alternative Payments",
+              "Risk Management",
+              "Currency Exchange",
+              "E-Commerce"
+            ],
+            "industries": [
+              "Financial Services"
+            ],
+            "is_verified": true,
+            "founded_info": {
+              "year": 1993,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": true,
+              "last_verified_at": 1686847766372
+            }
+          },
+          "stats": {
+            "employee_count": 9481,
+            "follower_count": 257019,
+            "employee_count_range": {
+              "start": 5001,
+              "end": 10000
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "US",
+              "state": "Ohio",
+              "city": "Cincinnati",
+              "postal_code": "45249",
+              "line1": "8500 Governors Hill Dr",
+              "line2": null,
+              "is_hq": true,
+              "description": "Global Headquarters"
+            },
+            "offices": [
+              {
+                "country": "GB",
+                "state": null,
+                "city": "London",
+                "postal_code": null,
+                "line1": "The Walbrook Buildind, EC4N 8AE",
+                "line2": null,
+                "is_hq": false,
+                "description": "UK",
+                "region": "London"
+              },
+              {
+                "country": "US",
+                "state": "Ohio",
+                "city": "Cincinnati",
+                "postal_code": "45249",
+                "line1": "8500 Governors Hill Dr",
+                "line2": null,
+                "is_hq": true,
+                "description": "Global Headquarters",
+                "region": "Cincinnati"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 51.51649,
+              "longitude": -0.128427
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/D560BAQF6ewEnvD6daQ/company-logo_400_400/company-logo_400_400/0/1721999981440/worldpay_logo?e=1756944000&v=beta&t=Hh__Um9t-OQ6f3atbDgxPRlCnwa6ykkrb3WdDxuUTsA",
+            "cover_url": "https://media.licdn.com/dms/image/v2/D4E1BAQE-WfF8544urA/company-background_10000/B4EZfP0uJXHYAU-/0/1751538395031/worldpay_cover?e=1754499600&v=beta&t=r9xhdwSkSPi_lvV9A3N-CememPG3eerjjI2qfXhUf1s",
+            "cropped_cover_url": "https://media.licdn.com/dms/image/v2/D4E3DAQGN7u5142fqbQ/image-scale_191_1128/B4EZfP0uJaHYAc-/0/1751538395037/worldpay_cover?e=1754499600&v=beta&t=8r7luDTD-dftxSNnrYiJkyE_0DTIJQwYn628MJkpUj4"
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "http://www.worldpay.com",
+            "linkedin": "https://www.linkedin.com/company/worldpay/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=260387%2C26428%2C2300593",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "260387"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Tremendous",
+          "basic_info": {
+            "name": "Tremendous",
+            "universal_name": "tremendous",
+            "description": null,
+            "website": null,
+            "linkedin_url": "https://www.linkedin.com/company/tremendous/",
+            "specialties": [],
+            "industries": [
+              "Entertainment"
+            ],
+            "is_verified": false,
+            "founded_info": {
+              "year": null,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": 1,
+            "follower_count": 5,
+            "employee_count_range": {
+              "start": 11,
+              "end": 50
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "US",
+              "state": "South Carolina",
+              "city": "Walhalla",
+              "postal_code": "29691",
+              "line1": "233 Timberlane Dr",
+              "line2": null,
+              "is_hq": false,
+              "description": null
+            },
+            "offices": [
+              {
+                "country": "US",
+                "state": "South Carolina",
+                "city": "Walhalla",
+                "postal_code": "29691",
+                "line1": "233 Timberlane Dr",
+                "line2": null,
+                "is_hq": false,
+                "description": null,
+                "region": "Walhalla"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 34.842274,
+              "longitude": -82.408165
+            }
+          },
+          "media": {
+            "logo_url": "",
+            "cover_url": "",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": null,
+            "linkedin": "https://www.linkedin.com/company/tremendous/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=9534690",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "9534690"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Plaid",
+          "basic_info": {
+            "name": "",
+            "universal_name": "",
+            "description": "",
+            "website": "",
+            "linkedin_url": "",
+            "specialties": [],
+            "industries": [],
+            "is_verified": false,
+            "founded_info": {
+              "year": null,
+              "month": null,
+              "day": null
+            },
+            "page_type": "",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": null,
+            "follower_count": null,
+            "employee_count_range": {
+              "start": null,
+              "end": null
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {},
+            "offices": [],
+            "geo_coordinates": {
+              "latitude": null,
+              "longitude": null
+            }
+          },
+          "media": {
+            "logo_url": "",
+            "cover_url": "",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "",
+            "linkedin": "",
+            "job_search": "",
+            "sales_navigator": "",
+            "crunchbase": ""
+          },
+          "company_urn": ""
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Draiver",
+          "basic_info": {
+            "name": "Draiver",
+            "universal_name": "draiver",
+            "description": "Draiver is a leading provider of technology-driven vehicle logistics solutions. Our AI-powered platform and nationwide network of 20,000+ insured and vetted drivers deliver unparalleled speed, efficiency, and transparency.\n\nWe serve a diverse range of clients, including fleet companies, OEMs, auto retailers, and consumers, helping them optimize their vehicle transportation operations. Our patented software provides real-time tracking, automated dispatching, and powerful analytics to streamline your workflows and reduce costs.\n\nPartner with Draiver to:\n\n▪️Accelerate your vehicle deliveries\n▪️Gain valuable insights into your logistics\n▪️Improve operational efficiency\n▪️Enhance customer satisfaction",
+            "website": "https://www.draiver.com/",
+            "linkedin_url": "https://www.linkedin.com/company/draiver/",
+            "specialties": [
+              "Driver Transport - Mobile Automation",
+              "Temporary License Plating",
+              "Logistics as a Service",
+              "Driver Management Platform",
+              "DriveAway Optimization with Machine Learning",
+              "Consumer Vehicle Transport",
+              "OEM Logistics",
+              "Automotive Logistics",
+              "Fleet Management",
+              "Transportation Management System (TMS)",
+              "Dealership Logistics",
+              "Logistics Software",
+              "Automated Dispatching",
+              "Real-Time Tracking",
+              "AI-Powered Logistics",
+              "Auto Transport",
+              "Driveaway Services",
+              "Last Mile Delivery",
+              "Fleet Services",
+              "Vehicle Relocation"
+            ],
+            "industries": [
+              "Computer Software"
+            ],
+            "is_verified": true,
+            "founded_info": {
+              "year": 2013,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": true,
+              "last_verified_at": 1694542711920
+            }
+          },
+          "stats": {
+            "employee_count": 590,
+            "follower_count": 37762,
+            "employee_count_range": {
+              "start": 51,
+              "end": 200
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "US",
+              "state": "KS",
+              "city": "Overland Park",
+              "postal_code": "66210",
+              "line1": null,
+              "line2": null,
+              "is_hq": true,
+              "description": "Overland Park, KS"
+            },
+            "offices": [
+              {
+                "country": "US",
+                "state": "KS",
+                "city": "Overland Park",
+                "postal_code": "66210",
+                "line1": null,
+                "line2": null,
+                "is_hq": true,
+                "description": "Overland Park, KS",
+                "region": "Overland Park"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 39.051476,
+              "longitude": -94.48047
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/D4E0BAQFzuitiwteqSw/company-logo_400_400/company-logo_400_400/0/1705094435609/draiver_logo?e=1756944000&v=beta&t=JHvnapqTvPpfWntoCMlF9kdPznk3DXChladETUDo6uk",
+            "cover_url": "https://media.licdn.com/dms/image/v2/D4E1BAQE-hw6pX_BLkQ/company-background_10000/B4EZWVFetgGwAU-/0/1741962997987/draiver_cover?e=1754499600&v=beta&t=2Nc1oFk4p6stigWqfb-Bvveap-SQQ6FWiBZYHT93s2I",
+            "cropped_cover_url": "https://media.licdn.com/dms/image/v2/D4E3DAQHhdkjh_BoADQ/image-scale_191_1128/B4EZWVFetdHgAc-/0/1741962997721/draiver_cover?e=1754499600&v=beta&t=H1EoCIBIcecY9EtEr2a2m3AN4t1v2lu1NDa4hKyaSs4"
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "https://www.draiver.com/",
+            "linkedin": "https://www.linkedin.com/company/draiver/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=3626074",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "3626074"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Absorb Software",
+          "basic_info": {
+            "name": "",
+            "universal_name": "",
+            "description": "",
+            "website": "",
+            "linkedin_url": "",
+            "specialties": [],
+            "industries": [],
+            "is_verified": false,
+            "founded_info": {
+              "year": null,
+              "month": null,
+              "day": null
+            },
+            "page_type": "",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": null,
+            "follower_count": null,
+            "employee_count_range": {
+              "start": null,
+              "end": null
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {},
+            "offices": [],
+            "geo_coordinates": {
+              "latitude": null,
+              "longitude": null
+            }
+          },
+          "media": {
+            "logo_url": "",
+            "cover_url": "",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "",
+            "linkedin": "",
+            "job_search": "",
+            "sales_navigator": "",
+            "crunchbase": ""
+          },
+          "company_urn": ""
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "EVONA",
+          "basic_info": {
+            "name": "EVONA",
+            "universal_name": "evona",
+            "description": "Evona is a company with a long tradition. For over 30 years, we observed the needs of our clients, developed our products and solutions, and positioned ourselves as leaders in the world gaming market. With the headquarters located in Bratislava, capital of Slovakia, and a development office based in Mostar, Bosnia and Hercegovina, we serve a wide network of clients worldwide. Our products and solutions are built exclusively to the specific needs of our clients while using the latest technologies. A synergy of experience and inexhaustible source of new and innovative ideas of our employees guarantee quality and comprehensive service, which we provide to our clients daily. Evona’s White Label Solutions help every one of our clients stay recognizable and unique on the market, while our Affiliate System, Risk Management, Back Office Administration, and Know Your Customer solutions give full business security, protection, and a great potential for market growth.\n\nEvona's portfolio\n\nOnline Channels\n- Web, \n- Mobile, \n- Android & IOS\n\nRetail\n- Betting terminals \n- Roulettes\n- POS Betting devices\n\nGaming solutions\n- Gamification \n- Sportsbook\n- Online Casino games\n- Lottery Games \n- Virtual games\n -Third-party solutions\n\nManagement system\n- White Label Management\n- Risk Management\n- Backoffice Administration\n- Affiliate System\n\n",
+            "website": "https://www.evona.sk",
+            "linkedin_url": "https://www.linkedin.com/company/evona/",
+            "specialties": [],
+            "industries": [
+              "Gambling & Casinos"
+            ],
+            "is_verified": true,
+            "founded_info": {
+              "year": null,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": true,
+              "last_verified_at": 1742556984549
+            }
+          },
+          "stats": {
+            "employee_count": 86,
+            "follower_count": 1363,
+            "employee_count_range": {
+              "start": 51,
+              "end": 200
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "BA",
+              "state": "Bosnia and Herzegovina",
+              "city": "Mostar",
+              "postal_code": "88 000",
+              "line1": "Blajburških žrtava 21",
+              "line2": null,
+              "is_hq": true,
+              "description": "Software Development Department"
+            },
+            "offices": [
+              {
+                "country": "SK",
+                "state": "Slovak Republic",
+                "city": "Bratislava",
+                "postal_code": "831 04",
+                "line1": "Stará Vajnorská cesta 17",
+                "line2": null,
+                "is_hq": false,
+                "description": "HEAD OFFICE",
+                "region": "Bratislava"
+              },
+              {
+                "country": "BA",
+                "state": "Bosnia and Herzegovina",
+                "city": "Mostar",
+                "postal_code": "88 000",
+                "line1": "Blajburških žrtava 21",
+                "line2": null,
+                "is_hq": true,
+                "description": "Software Development Department",
+                "region": "Mostar"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 48.188267,
+              "longitude": 17.113459
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/C4D0BAQENuATImCZAEg/company-logo_400_400/company-logo_400_400/0/1630561262350?e=1756944000&v=beta&t=QxWXJjkOfpzDAXbXOvTcbi-YVe1c7cgHFB6jGD8llGE",
+            "cover_url": "https://media.licdn.com/dms/image/v2/D4D1BAQFEvIMFsQnSlA/company-background_10000/company-background_10000/0/1696508372815/evona_cover?e=1754499600&v=beta&t=lq4-SPJtyWKhrkkr57yEHwErcyt-uCWZZ9MKtYTxJk0",
+            "cropped_cover_url": "https://media.licdn.com/dms/image/v2/D4D3DAQFFhQrtK9bnHw/image-scale_191_1128/image-scale_191_1128/0/1696508372772/evona_cover?e=1754499600&v=beta&t=Tei0kc4CZbDZkWjdXJa4Cdqmf5uUKEHrkziO5yEf0Hs"
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "https://www.evona.sk",
+            "linkedin": "https://www.linkedin.com/company/evona/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=13984371",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "13984371"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Crexi",
+          "basic_info": {
+            "name": "Crexi",
+            "universal_name": "crexi",
+            "description": "Crexi is a robust marketplace and technology platform containing easy-to-use workflow management tools and customizable data analytics designed to streamline the #CRE process from listing to closing.\n\nFor more information visit www.crexi.com.",
+            "website": "https://www.crexi.com",
+            "linkedin_url": "https://www.linkedin.com/company/crexi/",
+            "specialties": [
+              "Online Real Estate Marketing and Sales Platforms",
+              "technology",
+              "SaaS",
+              "Software as a service",
+              "real estate",
+              "commercial real estate",
+              "insights",
+              "retail",
+              "multifamily",
+              "auctions",
+              "lease",
+              "buy",
+              "broker",
+              "land",
+              "comps",
+              "property",
+              "mixed use",
+              "office",
+              "restaurant",
+              "hospitality",
+              "CRE",
+              "startup",
+              "tech",
+              "special purpose",
+              "senior living",
+              "data",
+              "agent",
+              "real estate broker",
+              "real estate agent",
+              "marketing",
+              "research"
+            ],
+            "industries": [
+              "Computer Software"
+            ],
+            "is_verified": true,
+            "founded_info": {
+              "year": 2015,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": true,
+              "last_verified_at": 1717199496645
+            }
+          },
+          "stats": {
+            "employee_count": 436,
+            "follower_count": 41912,
+            "employee_count_range": {
+              "start": 201,
+              "end": 500
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "US",
+              "state": "California",
+              "city": "Los Angeles",
+              "postal_code": "90094",
+              "line1": "5510 Lincoln Blvd",
+              "line2": "Suite 400",
+              "is_hq": true,
+              "description": "Crexi HQ"
+            },
+            "offices": [
+              {
+                "country": "US",
+                "state": "California",
+                "city": "Los Angeles",
+                "postal_code": "90094",
+                "line1": "5510 Lincoln Blvd",
+                "line2": "Suite 400",
+                "is_hq": true,
+                "description": "Crexi HQ",
+                "region": "Los Angeles"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 34.073666,
+              "longitude": -118.23985
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/C560BAQGkZKgah4RjhA/company-logo_400_400/company-logo_400_400/0/1630664824689/commercial_real_estate_exchange_inc__logo?e=1756944000&v=beta&t=dPz05NCbvAL2BYT7Hzz5pbpJNRl73yMkjPGr7k-Wzu8",
+            "cover_url": "https://media.licdn.com/dms/image/v2/C561BAQGZQbOer3bXPw/company-background_10000/company-background_10000/0/1605904801436/commercial_real_estate_exchange_inc__cover?e=1754499600&v=beta&t=lZUVM_i6uS9q8ZJSXP6rf70V-pGViiey7P2DLqOxWQ4",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "https://www.crexi.com",
+            "linkedin": "https://www.linkedin.com/company/crexi/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=6459490",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "6459490"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Runwise",
+          "basic_info": {
+            "name": "Runwise Ventures",
+            "universal_name": "runwise",
+            "description": "Runwise Ventures® passionately works with entrepreneurs, business leaders, and scientists to build new digital, intelligent business by providing capital investment and hacking strategic digital capabilities by venture consulting services.\n\nDedicating ourselves since 2009, we have established a clear track record of successfully funding and helping companies the growth of their startups transforming technologies ranging from marketplace, smart devices to sharing economy, and assembling new expertise needed to organize the technology commercialization and business growth.\n\nThink. Solve. Change！Digital is eating the world!!! Do you want to revolutionize the way of business? Are you passionate about venture consulting and believe in the power of digital innovation? We are seeking people who are passionate about innovation with the ambition to change the business world. Join the digital revolution together!",
+            "website": "https://runwise.co",
+            "linkedin_url": "https://www.linkedin.com/company/runwise/",
+            "specialties": [
+              "Venture Capital",
+              "Innovation Labs",
+              "Growth Capital Funding",
+              "Digital Innovation Consulting",
+              "Design Sprint Workshop",
+              "Agile Management Workshop",
+              "Growth Hacker Workshop",
+              "Digital Innovation",
+              "Innovation Strategy Consulting",
+              "Venture Building"
+            ],
+            "industries": [
+              "Computer Software"
+            ],
+            "is_verified": false,
+            "founded_info": {
+              "year": 2009,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": 21,
+            "follower_count": 1177,
+            "employee_count_range": {
+              "start": 51,
+              "end": 200
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "CN",
+              "state": "Guangdong",
+              "city": "Guangzhou",
+              "postal_code": "510095",
+              "line1": "403 Huanshi East Road",
+              "line2": "Innovation Center",
+              "is_hq": true,
+              "description": "Innovation Labs"
+            },
+            "offices": [
+              {
+                "country": "CN",
+                "state": "Guangdong",
+                "city": "Shenzhen",
+                "postal_code": "510020",
+                "line1": null,
+                "line2": null,
+                "is_hq": false,
+                "description": "Consulting Team",
+                "region": "Shenzhen"
+              },
+              {
+                "country": "CN",
+                "state": "Guangdong",
+                "city": "Guangzhou",
+                "postal_code": "510095",
+                "line1": "403 Huanshi East Road",
+                "line2": "Innovation Center",
+                "is_hq": true,
+                "description": "Innovation Labs",
+                "region": "China"
+              },
+              {
+                "country": "CN",
+                "state": "Beijing",
+                "city": "Beijing",
+                "postal_code": "100123",
+                "line1": null,
+                "line2": null,
+                "is_hq": false,
+                "description": "Venture Center",
+                "region": "China"
+              },
+              {
+                "country": "HK",
+                "state": null,
+                "city": "Hong Kong",
+                "postal_code": null,
+                "line1": null,
+                "line2": null,
+                "is_hq": false,
+                "description": null,
+                "region": "Hong Kong"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 36.559372,
+              "longitude": 103.75335
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/C560BAQENL3-wNsOLeA/company-logo_400_400/company-logo_400_400/0/1630655902973/runwise_logo?e=1756944000&v=beta&t=nlwP3o59i-NY9po6R1elJk_gYZZHdz8Lm6wmi4Oi7eI",
+            "cover_url": "https://media.licdn.com/dms/image/v2/C561BAQEpfpU7mVAgiw/company-background_10000/company-background_10000/0/1605766702281/runwise_cover?e=1754499600&v=beta&t=om2I4-u32mFkPNE18G25Fx5i9oL_2FsCJhrNpZgvlJM",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "https://runwise.co",
+            "linkedin": "https://www.linkedin.com/company/runwise/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=10578512",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "10578512"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "KMA Human Resources Consulting",
+          "basic_info": {
+            "name": "",
+            "universal_name": "",
+            "description": "",
+            "website": "",
+            "linkedin_url": "",
+            "specialties": [],
+            "industries": [],
+            "is_verified": false,
+            "founded_info": {
+              "year": null,
+              "month": null,
+              "day": null
+            },
+            "page_type": "",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": null,
+            "follower_count": null,
+            "employee_count_range": {
+              "start": null,
+              "end": null
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {},
+            "offices": [],
+            "geo_coordinates": {
+              "latitude": null,
+              "longitude": null
+            }
+          },
+          "media": {
+            "logo_url": "",
+            "cover_url": "",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "",
+            "linkedin": "",
+            "job_search": "",
+            "sales_navigator": "",
+            "crunchbase": ""
+          },
+          "company_urn": ""
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Carta",
+          "basic_info": {
+            "name": "Carta",
+            "universal_name": "carta",
+            "description": "There has been an error with the LinkedIn Company profiles.  Please follow via the Carta Worldwide LinkedIn company site.\r\n\r\nhttp://www.linkedin.com/company/carta-worldwide\r\n\r\nwww.cartaworldwide.com\r\n\r\nThanks,\r\n\r\nCarta Worldwide\r\nSuite 209\r\n277 Lakeshore Road E\r\nOakville, Ontario\r\nL6J1H9",
+            "website": "http://www.cartaworldwide.com",
+            "linkedin_url": "https://www.linkedin.com/company/carta/",
+            "specialties": [],
+            "industries": [
+              "Financial Services"
+            ],
+            "is_verified": false,
+            "founded_info": {
+              "year": 2007,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": 34,
+            "follower_count": 273,
+            "employee_count_range": {
+              "start": 11,
+              "end": 50
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {},
+            "offices": [],
+            "geo_coordinates": {
+              "latitude": null,
+              "longitude": null
+            }
+          },
+          "media": {
+            "logo_url": "",
+            "cover_url": "",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "http://www.cartaworldwide.com",
+            "linkedin": "https://www.linkedin.com/company/carta/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=374812",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "374812"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "ModMed",
+          "basic_info": {
+            "name": "",
+            "universal_name": "",
+            "description": "",
+            "website": "",
+            "linkedin_url": "",
+            "specialties": [],
+            "industries": [],
+            "is_verified": false,
+            "founded_info": {
+              "year": null,
+              "month": null,
+              "day": null
+            },
+            "page_type": "",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": null,
+            "follower_count": null,
+            "employee_count_range": {
+              "start": null,
+              "end": null
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {},
+            "offices": [],
+            "geo_coordinates": {
+              "latitude": null,
+              "longitude": null
+            }
+          },
+          "media": {
+            "logo_url": "",
+            "cover_url": "",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "",
+            "linkedin": "",
+            "job_search": "",
+            "sales_navigator": "",
+            "crunchbase": ""
+          },
+          "company_urn": ""
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Canva",
+          "basic_info": {
+            "name": "Canva",
+            "universal_name": "canva",
+            "description": "We're a global online visual communications platform on a mission to empower the world to design. Featuring a simple drag-and-drop user interface and a vast range of templates ranging from presentations, documents, websites, social media graphics, posters, apparel to videos, plus a huge library of fonts, stock photography, illustrations, video footage, and audio clips, anyone can take an idea and create something beautiful on Canva on any device, from anywhere in the world.\n\nSince our launch in 2013, we’ve had the crazy big goal of making design accessible to everyone. We were founded on the belief that people shouldn't need to understand complex software to unlock their creativity. We’re leveling the playing field and democratizing access to design and visual communication by empowering 100% of the world to communicate in a way that was once limited to the 1%. \n\nWe've always had a deeper mission surrounding Canva — which we talk about as our 'simple' two-step plan: to build one of the world’s most valuable companies, and to do the most good we possibly can. We're committed to our core value of Being a Force for Good, so as the value of our company grows, so too does our ability to have a positive impact on the world. ",
+            "website": "http://www.canva.com",
+            "linkedin_url": "https://www.linkedin.com/company/canva/",
+            "specialties": [
+              "Design",
+              "Graphic Design",
+              "Web app",
+              "Software engineering",
+              "Startup",
+              "Technology",
+              "Innovation",
+              "Publishing",
+              "product design"
+            ],
+            "industries": [
+              "Computer Software"
+            ],
+            "is_verified": true,
+            "founded_info": {
+              "year": 2012,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": true,
+              "last_verified_at": 1677655371047
+            }
+          },
+          "stats": {
+            "employee_count": 12425,
+            "follower_count": 2113466,
+            "employee_count_range": {
+              "start": 1001,
+              "end": 5000
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "AU",
+              "state": "New South Wales",
+              "city": "Surry Hills",
+              "postal_code": "2010",
+              "line1": "Kippax St",
+              "line2": null,
+              "is_hq": true,
+              "description": null
+            },
+            "offices": [
+              {
+                "country": "CN",
+                "state": "Chaoyang",
+                "city": "Beijing",
+                "postal_code": "101101",
+                "line1": "3A Shilipu Road",
+                "line2": "Vanke Times Center",
+                "is_hq": false,
+                "description": null,
+                "region": "Beijing"
+              },
+              {
+                "country": "US",
+                "state": "Texas",
+                "city": "Austin",
+                "postal_code": "78701",
+                "line1": "200 E 6th St",
+                "line2": null,
+                "is_hq": false,
+                "description": null,
+                "region": "Austin"
+              },
+              {
+                "country": "PH",
+                "state": "National Capital Region",
+                "city": "Makati",
+                "postal_code": "1229",
+                "line1": "116 V. A. Rufino St",
+                "line2": "Coherco Corporate Center",
+                "is_hq": false,
+                "description": null,
+                "region": "Makati"
+              },
+              {
+                "country": "AU",
+                "state": "New South Wales",
+                "city": "Surry Hills",
+                "postal_code": "2010",
+                "line1": "Kippax St",
+                "line2": null,
+                "is_hq": true,
+                "description": null,
+                "region": "Surry Hills"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 36.559372,
+              "longitude": 103.75335
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/C4D0BAQGO1uzGzmVB-A/company-logo_400_400/company-logo_400_400/0/1656630679668/canva_logo?e=1756944000&v=beta&t=sbZfUwzeZYeYudL2EkVPsmWX2BT1Yy7ovIuLp6eVErs",
+            "cover_url": "https://media.licdn.com/dms/image/v2/D561BAQENNQHyEVWpug/company-background_10000/company-background_10000/0/1737696695100/canva_cover?e=1754499600&v=beta&t=o-86vZhUmDyp-XvM_hedCwimqHxWZINz5GNtspZndPc",
+            "cropped_cover_url": "https://media.licdn.com/dms/image/v2/D563DAQH9-PTAWxrwEg/image-scale_191_1128/image-scale_191_1128/0/1737696694366/canva_cover?e=1754499600&v=beta&t=6dL08J-3mzqX-VZ1DjUtSjPXf2tCIHmR1WxR3lIFok0"
+          },
+          "funding": {
+            "total_rounds": 20,
+            "latest_round": {
+              "type": "Secondary market",
+              "date": {
+                "year": 2024,
+                "month": 10,
+                "day": 31
+              },
+              "url": "https://www.crunchbase.com/funding_round/canva-secondary-market--ebbb916b?utm_source=linkedin&utm_medium=referral&utm_campaign=linkedin_companies&utm_content=last_funding",
+              "investors_count": 0
+            },
+            "crunchbase_url": "https://www.crunchbase.com/organization/canva?utm_source=linkedin&utm_medium=referral&utm_campaign=linkedin_companies&utm_content=profile_cta"
+          },
+          "links": {
+            "website": "http://www.canva.com",
+            "linkedin": "https://www.linkedin.com/company/canva/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=2850862",
+            "sales_navigator": null,
+            "crunchbase": "https://www.crunchbase.com/organization/canva?utm_source=linkedin&utm_medium=referral&utm_campaign=linkedin_companies&utm_content=profile_cta"
+          },
+          "company_urn": "2850862"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Huddle Up",
+          "basic_info": {
+            "name": "",
+            "universal_name": "",
+            "description": "",
+            "website": "",
+            "linkedin_url": "",
+            "specialties": [],
+            "industries": [],
+            "is_verified": false,
+            "founded_info": {
+              "year": null,
+              "month": null,
+              "day": null
+            },
+            "page_type": "",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": null,
+            "follower_count": null,
+            "employee_count_range": {
+              "start": null,
+              "end": null
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {},
+            "offices": [],
+            "geo_coordinates": {
+              "latitude": null,
+              "longitude": null
+            }
+          },
+          "media": {
+            "logo_url": "",
+            "cover_url": "",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "",
+            "linkedin": "",
+            "job_search": "",
+            "sales_navigator": "",
+            "crunchbase": ""
+          },
+          "company_urn": ""
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "Glimpse",
+          "basic_info": {
+            "name": "Glimpse",
+            "universal_name": "glimpse",
+            "description": null,
+            "website": null,
+            "linkedin_url": "https://www.linkedin.com/company/glimpse/",
+            "specialties": [],
+            "industries": [
+              "Computer Hardware"
+            ],
+            "is_verified": false,
+            "founded_info": {
+              "year": null,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": 9,
+            "follower_count": 14,
+            "employee_count_range": {
+              "start": 2,
+              "end": 10
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "US",
+              "state": null,
+              "city": null,
+              "postal_code": null,
+              "line1": null,
+              "line2": null,
+              "is_hq": true,
+              "description": null
+            },
+            "offices": [
+              {
+                "country": "US",
+                "state": null,
+                "city": null,
+                "postal_code": null,
+                "line1": null,
+                "line2": null,
+                "is_hq": true,
+                "description": null,
+                "region": "United States"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 39.50357,
+              "longitude": -99.01834
+            }
+          },
+          "media": {
+            "logo_url": "",
+            "cover_url": "",
+            "cropped_cover_url": ""
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": null,
+            "linkedin": "https://www.linkedin.com/company/glimpse/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=167355",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "167355"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "CivicPlus",
+          "basic_info": {
+            "name": "CivicPlus",
+            "universal_name": "civicplus",
+            "description": "CivicPlus is the only government technology company exclusively committed to powering and empowering governments to efficiently operate, serve, and govern through the use of our innovative and integrated technology solutions purpose-built and supported by former municipal leaders and award-winning support teams. \n\nWhen many residents hear the word government, they think of federal and state leaders and agencies. However, in reality, residents interact more with the local leaders whose work and initiatives impact them directly where they live, work, play, and raise their families.\n\nAt CivicPlus®️, we believe that every interaction between residents and their local government should be exceptional and frictionless. It’s why we build technology solutions designed to foster positive and powerful civic experiences. \n\nWith more than 20 years of experience, CivicPlus has earned the trust of over 12,000 customers, their 100,000+ local government users, and their 340 million+ residents in the U.S. and Canada alone.",
+            "website": "https://www.civicplus.com",
+            "linkedin_url": "https://www.linkedin.com/company/civicplus/",
+            "specialties": [
+              "Government Websites",
+              "Digital Community Engagement",
+              "Website Design and Hosting",
+              "Parks and Rec Management",
+              "Agenda and Meeting Management",
+              "Mass Notifications",
+              "Citizen Request Management",
+              "Planning, Permitting, Licensing, and Code Enforcement",
+              "Municode Codification",
+              "Fire and Life Safety Inspections"
+            ],
+            "industries": [
+              "Information Technology & Services"
+            ],
+            "is_verified": true,
+            "founded_info": {
+              "year": 2001,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": true,
+              "last_verified_at": 1686854219546
+            }
+          },
+          "stats": {
+            "employee_count": 930,
+            "follower_count": 26642,
+            "employee_count_range": {
+              "start": 501,
+              "end": 1000
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "US",
+              "state": "Kansas",
+              "city": "Manhattan",
+              "postal_code": "66502",
+              "line1": "302 South 4th Street, Suite 500",
+              "line2": null,
+              "is_hq": true,
+              "description": null
+            },
+            "offices": [
+              {
+                "country": "US",
+                "state": "Kansas",
+                "city": "Manhattan",
+                "postal_code": "66502",
+                "line1": "302 South 4th Street, Suite 500",
+                "line2": null,
+                "is_hq": true,
+                "description": null,
+                "region": "Manhattan"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 39.186687,
+              "longitude": -96.5666
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/C560BAQGQFR-jiyzP3Q/company-logo_400_400/company-logo_400_400/0/1630662452908/civicplus_logo?e=1756944000&v=beta&t=iAsFC-ioprTrCcLCT4iiL-Vpj1n1M7AKEtyRuRf5VKM",
+            "cover_url": "https://media.licdn.com/dms/image/v2/D561BAQGX0F7nytxxJQ/company-background_10000/company-background_10000/0/1697054559803/civicplus_cover?e=1754499600&v=beta&t=3lNAYud32Fg2dF8deTu_a0ln3fKu_WxvRgOS9Ectngo",
+            "cropped_cover_url": "https://media.licdn.com/dms/image/v2/D563DAQHdmp7Vylch6A/image-scale_191_1128/image-scale_191_1128/0/1697054560348/civicplus_cover?e=1754499600&v=beta&t=cUbwtOlAJ-YYSMOCrGddVpE12_EViZbcWJp_bgmDV-M"
+          },
+          "funding": {
+            "total_rounds": 1,
+            "latest_round": {
+              "type": "Grant",
+              "date": {
+                "year": 2023,
+                "month": 6,
+                "day": 20
+              },
+              "url": "https://www.crunchbase.com/funding_round/civic-plus-grant--028f0ce8?utm_source=linkedin&utm_medium=referral&utm_campaign=linkedin_companies&utm_content=last_funding",
+              "investors_count": 0
+            },
+            "crunchbase_url": "https://www.crunchbase.com/organization/civic-plus?utm_source=linkedin&utm_medium=referral&utm_campaign=linkedin_companies&utm_content=profile_cta"
+          },
+          "links": {
+            "website": "https://www.civicplus.com",
+            "linkedin": "https://www.linkedin.com/company/civicplus/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=246768",
+            "sales_navigator": null,
+            "crunchbase": "https://www.crunchbase.com/organization/civic-plus?utm_source=linkedin&utm_medium=referral&utm_campaign=linkedin_companies&utm_content=profile_cta"
+          },
+          "company_urn": "246768"
+        }
+      },
+      {
+        "json": {
+          "input_identifier": "MetaCTO",
+          "basic_info": {
+            "name": "MetaCTO",
+            "universal_name": "metacto",
+            "description": "We believe in transcending the conventional. The term 'Meta' signifies our commitment to go beyond the ordinary, to think about thinking, and to understand and implement tech strategies at a higher, more comprehensive level.\n\nThis holistic approach echoes our belief in understanding our clients' needs from an overarching perspective, thereby enabling us to devise tech strategies that are not just effective but also future-proof.\n\nMetaCTO offers 'Outsourced CTO' services to businesses. Our name reflects the essence of our founder’s rich tech experience, comprehensive skill set, and MIT education.\n\nAs your Outsourced CTO, we aim to operate at a meta level, providing top-tier CTO services and navigating the complex tech landscape on your behalf. We specialize in mobile applications but our expertise extends to all facets of technology strategy.\n\nOur services include everything from product strategy support and refining requirements to market research, go-to-market strategies, and UX/UI guidance. We ensure your technology is not just a tool but a strategic asset, enhancing your market position and driving growth.",
+            "website": "www.metacto.com",
+            "linkedin_url": "https://www.linkedin.com/company/metacto/",
+            "specialties": [
+              "Product Design",
+              "Startup Advising",
+              "Fundraising Support",
+              "Founder Support",
+              "Software Development",
+              "Mobile Applications",
+              "Computer Vision",
+              "Cloud Infrastructure",
+              "Go to Market Strategy",
+              "Digital Marketing",
+              "UX / UI",
+              "Quality Assurance",
+              "Product Monetization",
+              "User Engagement Optimization",
+              "CRO"
+            ],
+            "industries": [
+              "Computer Software"
+            ],
+            "is_verified": false,
+            "founded_info": {
+              "year": 2023,
+              "month": null,
+              "day": null
+            },
+            "page_type": "COMPANY",
+            "verification": {
+              "is_verified": false,
+              "last_verified_at": null
+            }
+          },
+          "stats": {
+            "employee_count": 17,
+            "follower_count": 6300,
+            "employee_count_range": {
+              "start": 11,
+              "end": 50
+            },
+            "student_count": null
+          },
+          "locations": {
+            "headquarters": {
+              "country": "US",
+              "state": "CA",
+              "city": "Los Angeles",
+              "postal_code": null,
+              "line1": null,
+              "line2": null,
+              "is_hq": true,
+              "description": "Headquarters"
+            },
+            "offices": [
+              {
+                "country": "US",
+                "state": "CA",
+                "city": "Los Angeles",
+                "postal_code": null,
+                "line1": null,
+                "line2": null,
+                "is_hq": true,
+                "description": "Headquarters",
+                "region": "Los Angeles"
+              }
+            ],
+            "geo_coordinates": {
+              "latitude": 34.073666,
+              "longitude": -118.23985
+            }
+          },
+          "media": {
+            "logo_url": "https://media.licdn.com/dms/image/v2/D560BAQHPLJWafBz98w/company-logo_400_400/company-logo_400_400/0/1705593341394/metacto_logo?e=1756944000&v=beta&t=JFvvJbK7UDW4BBAYOcs4nQjpXb4KNuADi4Z2xAhhIOw",
+            "cover_url": "https://media.licdn.com/dms/image/v2/D561BAQHE8cbKjDWmwQ/company-background_10000/company-background_10000/0/1713885407056/metacto_cover?e=1754499600&v=beta&t=fKNlRxpPyOjW2NB4P9B3Pg01W_WoJofWCLZ-OxddtwA",
+            "cropped_cover_url": "https://media.licdn.com/dms/image/v2/D563DAQG6XUxjHmkiVQ/image-scale_191_1128/image-scale_191_1128/0/1713885406238/metacto_cover?e=1754499600&v=beta&t=kNozd4QqJhwC-VUVndPMgCwDgj-HYTdS_n7AfA82AYg"
+          },
+          "funding": {
+            "total_rounds": null,
+            "latest_round": {
+              "type": "",
+              "date": null,
+              "url": "",
+              "investors_count": null
+            },
+            "crunchbase_url": ""
+          },
+          "links": {
+            "website": "www.metacto.com",
+            "linkedin": "https://www.linkedin.com/company/metacto/",
+            "job_search": "https://www.linkedin.com/jobs/search?geoId=92000000&f_C=99325179",
+            "sales_navigator": null,
+            "crunchbase": ""
+          },
+          "company_urn": "99325179"
+        }
+      }
+    ],
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 557816606,
+          "message": {
+            "message_id": 286,
+            "from": {
+              "id": 6058704863,
+              "is_bot": false,
+              "first_name": "Ali",
+              "last_name": "Hassan",
+              "username": "delfkill",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 6058704863,
+              "first_name": "Ali",
+              "last_name": "Hassan",
+              "username": "delfkill",
+              "type": "private"
+            },
+            "date": 1753891278,
+            "text": "give me infomation about job"
+          }
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Jobs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jobs": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Scrap Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrap Data": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lead Enchirement": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Jobs1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jobs1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "field 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "field 1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "field 2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Scrap Data3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Scrap Data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Lead Enchirement1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrap Data1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort1": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates1": {
+      "main": [
+        [
+          {
+            "node": "Sort1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "field 1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrap Data3": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Lead Enchirement",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lead Enchirement1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1f712152-3278-4408-9b4f-a9eb0f2fbab0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d781785cc92b387d9586bcb00b682ac0a21587ecd0f470f6ad3c828f1905f9f0"
+  },
+  "id": "an2Kl6wwPKHLm0pf",
+  "tags": []
+}
